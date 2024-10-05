@@ -9,7 +9,7 @@ const AuthLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <div className={`${lexendFont.className} bg-primary-c600 h-screen p-6`}>
+    <div className={`${lexendFont.className} bg-primary-c600 h-screen`}>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 h-full">
         <div className="col-span-1 text-white hidden md:block">
           <SideBar />

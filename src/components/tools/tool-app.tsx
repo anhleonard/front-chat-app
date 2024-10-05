@@ -7,7 +7,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const ToolApp = () => {
   return (
-    <div className="py-4 px-4 flex flex-col gap-4">
+    <div className="py-4 px-3 flex flex-col gap-4">
       <Link href={"/"}>
         <Image
           src={"/images/chatapp-logo.svg"}

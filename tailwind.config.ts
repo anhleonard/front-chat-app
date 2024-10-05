@@ -19,6 +19,7 @@ const config: Config = {
           c200: "#88B9B2",
           c100: "#A8C9C4",
           c50: "#D1E7E7",
+          c10: "#E5F0F0",
         },
         grey: {
           c900: "#454545",
@@ -31,6 +32,7 @@ const config: Config = {
           c200: "#C6C6C6",
           c100: "#E2DFDF",
           c50: "#F0F0F0",
+          c30: "#F4F4F4",
           c10: "#FBFAFA",
         },
       },

@@ -5,7 +5,7 @@ import React from "react";
 
 const SideBar = () => {
   return (
-    <div className="text-white flex flex-col items-center pr-6 py-2 h-full">
+    <div className="text-white flex flex-col items-center py-2 h-full">
       <div className="flex items-center gap-4">
         <Image
           src={"/images/chatapp-logo.svg"}
