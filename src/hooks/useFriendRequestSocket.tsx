@@ -1,26 +1,29 @@
 import { useEffect, useState } from "react";
-import { io } from "socket.io-client";
+import io from "socket.io-client";
 
-const useFriendRequestSocket = (userId: number) => {
-  const [friendRequests, setFriendRequests] = useState([]);
+const useFriendRequestNotification = (receiverId: number) => {
+  const [notification, setNotification] = useState<string | null>(null);
 
   useEffect(() => {
-    // Kết nối tới namespace /friend-request của WebSocket server
-    const socket = io("http://localhost:3000/friend-request");
+    // Kết nối tới WebSocket server với namespace '/friend-request'
+    const socket = io("http://localhost:3001/friend-request");
 
-    // Lắng nghe sự kiện friendRequest dành riêng cho userId này
-    socket.on(`friendRequest:${userId}`, (data) => {
-      //   setFriendRequests((prevRequests) => [...prevRequests, data]);
-      alert(data.message); // Thông báo người dùng có lời mời kết bạn
-    });
+    // Lắng nghe sự kiện 'friendRequest:{receiverId}' từ phía server
+    socket.on(
+      `friendRequest:${receiverId}`,
+      (data: { message: string; senderId: number }) => {
+        setNotification(data.message);
+        alert(`${data.message} from userid: ${data?.senderId}`);
+      }
+    );
 
-    // Đóng kết nối khi component unmount
+    // Cleanup khi component unmount
     return () => {
       socket.disconnect();
     };
-  }, [userId]);
+  }, [receiverId]);
 
-  return friendRequests;
+  return notification;
 };
 
-export default useFriendRequestSocket;
+export default useFriendRequestNotification;

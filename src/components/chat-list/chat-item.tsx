@@ -3,7 +3,7 @@ import React from "react";
 
 const ChatItem = () => {
   return (
-    <div className="flex items-start justify-between hover:bg-grey-c30 cursor-pointer rounded-xl px-3 py-2.5">
+    <div className="flex items-start justify-between hover:bg-grey-c30 cursor-pointer rounded-xl px-3 py-3">
       <div className="flex items-start">
         <Avatar
           alt="Remy Sharp"

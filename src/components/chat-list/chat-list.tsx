@@ -1,14 +1,38 @@
-import { Avatar, Divider, IconButton } from "@mui/material";
-import KeyboardArrowLeftRoundedIcon from "@mui/icons-material/KeyboardArrowLeftRounded";
-import BadgeAvatar from "./badge-avatar";
-import SelectField from "@/libs/select";
-import TextField from "@/libs/text-field";
-import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
-import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import ChatItem from "./chat-item";
+'use client';
+import { Divider, IconButton } from '@mui/material';
+import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
+import TextField from '@/libs/text-field';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import ChatItem from './chat-item';
+import { useDispatch } from 'react-redux';
+import { openChatModal } from '@/redux/slices/chatModalSlice';
+import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
+import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
+import { openGroupModal } from '@/redux/slices/groupModalSlice';
+import { useState } from 'react';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import ErrorOutlineRoundedIcon from '@mui/icons-material/ErrorOutlineRounded';
 
 const ChatList = () => {
+  const dispatch = useDispatch();
+  const [openSearchUser, setOpenSearchUser] = useState(false);
+
+  const handleAddChat = () => {
+    let modal = {
+      isOpen: true,
+      className: 'h-dvh w-[400px]',
+    };
+    dispatch(openChatModal(modal));
+  };
+
+  const handleAddGroup = () => {
+    let modal = {
+      isOpen: true,
+      className: 'h-dvh w-[600px]',
+    };
+    dispatch(openGroupModal(modal));
+  };
+
   return (
     <div className="h-screen flex flex-col">
       <div className="py-3 flex items-center gap-2">
@@ -19,7 +43,7 @@ const ChatList = () => {
       </div>
       <Divider />
 
-      <div className="flex flex-col items-center gap-4 mt-3">
+      <div className="flex items-center gap-2 mt-3">
         {/* select here */}
         {/* <BadgeAvatar />
         <div className="font-medium text-base text-grey-c900"></div>
@@ -27,35 +51,59 @@ const ChatList = () => {
         <TextField
           placeholder="Seach"
           endIcon={
-            <SearchRoundedIcon className="text-sm text-grey-c200 font-medium" />
+            <SearchRoundedIcon className="text-lg text-grey-c200 font-medium" />
           }
-          inputClassName="py-2.5"
+          inputClassName="py-1"
+          onClick={(e) => setOpenSearchUser(true)}
         />
-      </div>
-
-      <div className="flex justify-between items-center py-3">
-        <div className="font-medium text-sm text-grey-c900 pl-1.5">
-          Last chats
-        </div>
-        <div className="flex gap-1 items-center">
-          <IconButton className="p-2 bg-primary-c10 rounded-[10px] transition duration-200">
-            <AddRoundedIcon className="text-primary-c800 font-bold text-sm" />
+        {openSearchUser ? (
+          <IconButton onClick={(e) => setOpenSearchUser(false)}>
+            <CloseRoundedIcon className="text-grey-c700 text-lg" />
           </IconButton>
-          <MoreVertIcon className="text-grey-c600 font-bold text-base hover:cursor-pointer" />
-        </div>
+        ) : null}
       </div>
 
-      <div className="flex flex-col gap-2 flex-1 overflow-auto pb-6">
-        <div className="flex flex-col gap-1 ">
-          <ChatItem />
-          <ChatItem />
-          <ChatItem />
-          <ChatItem />
-          <ChatItem />
-          <ChatItem />
-          <ChatItem />
+      {openSearchUser ? (
+        <div className="bg-white flex-1 flex items-center mt-16 flex-col gap-2">
+          <ErrorOutlineRoundedIcon className="text-grey-c100 text-[50px]" />
+          <div className="text-sm font-medium text-grey-c500">
+            No user found
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="overflow-y-auto flex flex-col">
+          <div className="flex items-center justify-between py-3">
+            <div className="font-medium text-sm text-grey-c900 pl-1.5">
+              Last chats
+            </div>
+            <div className="flex gap-2 items-center">
+              <IconButton
+                className="p-2 bg-primary-c10 rounded-[10px] transition duration-200"
+                onClick={() => handleAddChat()}
+              >
+                <PersonAddAltOutlinedIcon className="text-primary-c800 font-bold text-sm" />
+              </IconButton>
+              <IconButton
+                className="p-2 bg-primary-c10 rounded-[10px] transition duration-200"
+                onClick={() => handleAddGroup()}
+              >
+                <GroupAddOutlinedIcon className="text-primary-c800 font-bold text-sm" />
+              </IconButton>
+            </div>
+          </div>
+          <div className="flex flex-col gap-2 flex-1 overflow-auto pt-2 pb-3">
+            <div className="flex flex-col gap-1">
+              <ChatItem />
+              <ChatItem />
+              <ChatItem />
+              <ChatItem />
+              <ChatItem />
+              <ChatItem />
+              <ChatItem />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

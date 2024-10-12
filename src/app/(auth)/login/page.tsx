@@ -1,11 +1,26 @@
-import ButtonField from "@/libs/button";
-import Link from "next/link";
-import React from "react";
-import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import TextField from "@/libs/text-field";
+'use client';
+import ButtonField from '@/libs/button';
+import Link from 'next/link';
+import React, { useState } from 'react';
+import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import TextField from '@/libs/text-field';
+import { getMe, loginUser } from '@/apis/services/auth';
+import { useRouter } from 'next/navigation';
 
 const LoginPage = () => {
+  const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = async () => {
+    const res = await loginUser({ email, password });
+    if (res) {
+      router.push('/');
+    }
+    return res;
+  };
+
   return (
     <div className="w-full gap-12 flex flex-col items-center justify-center h-full">
       <div className="w-full flex flex-col items-center gap-2">
@@ -19,18 +34,27 @@ const LoginPage = () => {
               <MailOutlineRoundedIcon className="text-[18px] text-grey-c200 font-medium" />
             }
             placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             startIcon={
               <LockOutlinedIcon className="text-[18px] text-grey-c200 font-medium" />
             }
             placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
-          <ButtonField label="Log In" />
+          <ButtonField
+            label="Log In"
+            handlePressButton={() => {
+              handleLogin();
+            }}
+          />
         </div>
         <div className="text-sm">
           <span className="text-grey-c500">Don't have an account? </span>
-          <Link href={"/signup"} className="underline text-primary-c800">
+          <Link href={'/signup'} className="underline text-primary-c800">
             Register
           </Link>
         </div>

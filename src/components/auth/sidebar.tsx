@@ -22,8 +22,8 @@ const SideBar = () => {
         <Image
           src={"/images/auth-image.svg"}
           alt="auth-image"
-          width={300}
-          height={300}
+          width={270}
+          height={270}
         />
       </div>
     </div>

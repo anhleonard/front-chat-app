@@ -1,10 +1,10 @@
-"use client";
-import { Button, Divider, IconButton, Typography } from "@mui/material";
-import React from "react";
-import BadgeAvatar from "../chat-list/badge-avatar";
-import FileItem from "./file-item";
-import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
-import AccordionLib from "@/libs/accordion";
+'use client';
+import { Button, Divider, IconButton, Typography } from '@mui/material';
+import React from 'react';
+import BadgeAvatar from '../chat-list/badge-avatar';
+import FileItem from './file-item';
+import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
+import AccordionLib from '@/libs/accordion';
 
 const ChatFile = () => {
   return (
@@ -16,31 +16,35 @@ const ChatFile = () => {
         <div className="font-bold text-lg">Share files</div>
       </div>
       <Divider />
-      <div className="flex flex-col items-center gap-1 px-2">
-        <BadgeAvatar />
+      <div className="flex flex-col items-center gap-1 px-2 flex-1 overflow-auto">
+        <div className="flex flex-col items-center py-8 gap-2">
+          <BadgeAvatar />
 
-        <div className="flex flex-row items-center gap-2">
-          <div className="font-medium text-base text-grey-c900">Myra Tran</div>
-          <IconButton className="bg-grey-c30 p-1 text-grey-c900 hover:text-primary-c900 hover:bg-primary-c10">
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M7.99982 13.3333H13.9998M10.9172 2.41461C11.1825 2.14922 11.5425 2.00012 11.9178 2.00012C12.2931 2.00012 12.6531 2.14922 12.9185 2.41461C13.1839 2.68001 13.333 3.03996 13.333 3.41528C13.333 3.7906 13.1839 4.15055 12.9185 4.41595L4.91182 12.4233C4.75322 12.5819 4.55717 12.6979 4.34182 12.7606L2.42716 13.3193C2.36979 13.336 2.30898 13.337 2.25109 13.3222C2.19321 13.3074 2.14037 13.2772 2.09812 13.235C2.05587 13.1927 2.02575 13.1399 2.01092 13.082C1.99609 13.0241 1.99709 12.9633 2.01382 12.9059L2.57249 10.9913C2.6353 10.7762 2.75132 10.5804 2.90982 10.4219L10.9172 2.41461Z"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </IconButton>
+          <div className="flex flex-row items-center gap-2">
+            <div className="font-medium text-base text-grey-c900">
+              Myra Tran
+            </div>
+            <IconButton className="bg-grey-c30 p-1 text-grey-c900 hover:text-primary-c900 hover:bg-primary-c10">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.99982 13.3333H13.9998M10.9172 2.41461C11.1825 2.14922 11.5425 2.00012 11.9178 2.00012C12.2931 2.00012 12.6531 2.14922 12.9185 2.41461C13.1839 2.68001 13.333 3.03996 13.333 3.41528C13.333 3.7906 13.1839 4.15055 12.9185 4.41595L4.91182 12.4233C4.75322 12.5819 4.55717 12.6979 4.34182 12.7606L2.42716 13.3193C2.36979 13.336 2.30898 13.337 2.25109 13.3222C2.19321 13.3074 2.14037 13.2772 2.09812 13.235C2.05587 13.1927 2.02575 13.1399 2.01092 13.082C1.99609 13.0241 1.99709 12.9633 2.01382 12.9059L2.57249 10.9913C2.6353 10.7762 2.75132 10.5804 2.90982 10.4219L10.9172 2.41461Z"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </IconButton>
+          </div>
         </div>
 
-        <div className="grid grid-cols-2 w-full gap-4">
+        {/* <div className="grid grid-cols-2 w-full gap-4">
           <Button className="col-span-1 flex flex-col items-center justify-center gap-0.5 bg-grey-c30 hover:bg-primary-c10 text-grey-c900 hover:text-primary-c900 h-24 w-full rounded-2xl hover:cursor-pointer">
             <Typography textTransform={"initial"} className="font-medium">
               All files
@@ -93,7 +97,7 @@ const ChatFile = () => {
               </div>
             </div>
           </Button>
-        </div>
+        </div> */}
 
         <div className="px-1.5 w-full">
           <Divider className="w-full bg-grey-c10" />
@@ -108,10 +112,10 @@ const ChatFile = () => {
         <div className="w-full">
           <div className="flex justify-between items-center py-1">
             <div className="font-medium text-sm text-grey-c900 pl-1.5">
-              Last chats
+              Shared files
             </div>
           </div>
-          <div className="flex flex-col gap-3 w-full">
+          <div className="flex flex-col w-full">
             <FileItem
               title="Documents"
               subTitle="126 files, 196 MB"
