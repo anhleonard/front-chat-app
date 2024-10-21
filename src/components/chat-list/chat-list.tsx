@@ -1,5 +1,5 @@
 'use client';
-import { Divider, IconButton } from '@mui/material';
+import { Avatar, Divider, IconButton, Typography } from '@mui/material';
 import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
 import TextField from '@/libs/text-field';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
@@ -16,6 +16,7 @@ import ErrorOutlineRoundedIcon from '@mui/icons-material/ErrorOutlineRounded';
 const ChatList = () => {
   const dispatch = useDispatch();
   const [openSearchUser, setOpenSearchUser] = useState(false);
+  const [searchContent, setSearchContent] = useState('');
 
   const handleAddChat = () => {
     let modal = {
@@ -49,27 +50,64 @@ const ChatList = () => {
         <div className="font-medium text-base text-grey-c900"></div>
         <SelectField /> */}
         <TextField
-          placeholder="Seach"
+          placeholder="Search"
           endIcon={
             <SearchRoundedIcon className="text-lg text-grey-c200 font-medium" />
           }
           inputClassName="py-1"
           onClick={(e) => setOpenSearchUser(true)}
+          onChange={(e) => setSearchContent(e.target.value)}
         />
         {openSearchUser ? (
-          <IconButton onClick={(e) => setOpenSearchUser(false)}>
+          <IconButton
+            onClick={(e) => {
+              setSearchContent('');
+              setOpenSearchUser(false);
+            }}
+          >
             <CloseRoundedIcon className="text-grey-c700 text-lg" />
           </IconButton>
         ) : null}
       </div>
 
       {openSearchUser ? (
-        <div className="bg-white flex-1 flex items-center mt-16 flex-col gap-2">
-          <ErrorOutlineRoundedIcon className="text-grey-c100 text-[50px]" />
-          <div className="text-sm font-medium text-grey-c500">
-            No user found
+        searchContent !== '' ? (
+          <div className="bg-white flex-1 flex flex-col gap-2 py-3">
+            <div className="flex items-center gap-2 hover:cursor-pointer hover:bg-grey-c30 py-2 px-3 rounded-lg">
+              <Avatar
+                src="/images/cute-avatar.jpeg"
+                alt="user-avatar"
+                className="w-[50px] h-[50px]"
+              />
+              <Typography
+                textTransform={'initial'}
+                className="font-normal text-sm text-grey-c900"
+              >
+                Anh Leonard
+              </Typography>
+            </div>
+            <div className="flex items-center gap-2 hover:cursor-pointer hover:bg-grey-c30 py-2 px-3 rounded-lg">
+              <Avatar
+                src="/images/cute-avatar.jpeg"
+                alt="user-avatar"
+                className="w-[50px] h-[50px]"
+              />
+              <Typography
+                textTransform={'initial'}
+                className="font-normal text-sm text-grey-c900"
+              >
+                Ngô Thành Nam
+              </Typography>
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="bg-white flex-1 flex items-center mt-16 flex-col gap-2">
+            <ErrorOutlineRoundedIcon className="text-grey-c100 text-[50px]" />
+            <div className="text-sm font-medium text-grey-c500">
+              No user found
+            </div>
+          </div>
+        )
       ) : (
         <div className="overflow-y-auto flex flex-col">
           <div className="flex items-center justify-between py-3">

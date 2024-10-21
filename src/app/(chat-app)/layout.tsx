@@ -1,9 +1,9 @@
-"use client";
-import React from "react";
-import ToolApp from "@/components/tools/tool-app";
-import { config } from "@fortawesome/fontawesome-svg-core";
-import "@fortawesome/fontawesome-svg-core/styles.css";
-import { lexendFont } from "../layout";
+'use client';
+import React from 'react';
+import ToolApp from '@/components/tools/tool-app';
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+import { lexendFont } from '../layout';
 config.autoAddCss = false;
 
 const HomeLayout = ({

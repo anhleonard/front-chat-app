@@ -7,12 +7,12 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
-import { Box, Divider, Drawer } from '@mui/material';
+import { Divider, Drawer } from '@mui/material';
 import { lexendFont } from '@/app/layout';
 import ButtonField from '@/libs/button';
 import TextField from '@/libs/text-field';
 import { closeChatModal } from '@/redux/slices/chatModalSlice';
-import UserInforModal from './user-infor-modal';
+import UserInforContent from './user-infor-modal';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -100,7 +100,7 @@ export default function AddFriendModal() {
             style: { position: 'absolute' },
           }}
         >
-          <UserInforModal onClose={() => setOpenUserInfo(false)} />
+          <UserInforContent onClose={() => setOpenUserInfo(false)} />
         </Drawer>
       </div>
     </BootstrapDialog>

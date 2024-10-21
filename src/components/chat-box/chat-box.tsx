@@ -1,14 +1,14 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import { Avatar, Divider } from "@mui/material";
-import ChatIcons from "./chat-icons";
-import MessageBox from "@/libs/message-box";
-import IncommingMessage from "./incomming-message";
-import CurrentMessage from "./current-message";
+'use client';
+import React, { useState } from 'react';
+import { Divider } from '@mui/material';
+import ChatIcons from './chat-icons';
+import MessageBox from '@/libs/message-box';
+import IncommingMessage from './incomming-message';
+import CurrentMessage from './current-message';
 
 const ChatBox = () => {
   const [messages, setMessages] = useState<string[]>([]);
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
 
   return (
     <div className="h-screen flex flex-col">

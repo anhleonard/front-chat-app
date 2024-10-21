@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { store } from '@/redux/store';
 import BaseModal from '@/components/modals/base-modal';
 import dynamic from 'next/dynamic';
+import UserInforModal from '@/components/modals/user-infor-modal';
 const AddFriendModal = dynamic(
   () => import('@/components/chat-list/modals/add-friend-modal'),
   {
@@ -81,6 +82,7 @@ export default function RootLayout({
             <BaseModal />
             <AddFriendModal />
             <AddGroupModal />
+            <UserInforModal />
           </Provider>
         </ThemeProvider>
       </body>

@@ -1,4 +1,11 @@
-import { Avatar, Button, Divider, IconButton, Typography } from '@mui/material';
+import {
+  Avatar,
+  Button,
+  Divider,
+  dividerClasses,
+  IconButton,
+  Typography,
+} from '@mui/material';
 import React from 'react';
 import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
 import ButtonField from '@/libs/button';
@@ -7,16 +14,21 @@ import WarningAmberRoundedIcon from '@mui/icons-material/WarningAmberRounded';
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
 
 type Props = {
+  hasBack?: boolean;
   onClose?: () => void;
 };
 
-const UserInforModal = ({ onClose }: Props) => {
+const UserInforContent = ({ hasBack = true, onClose }: Props) => {
   return (
     <div className="flex flex-col h-full">
       <div className="flex items-center gap-1 py-3 px-1">
-        <IconButton className="!p-1" onClick={() => onClose && onClose()}>
-          <KeyboardArrowLeftRoundedIcon className="text-grey-c900" />
-        </IconButton>
+        {hasBack ? (
+          <IconButton className="!p-1" onClick={() => onClose && onClose()}>
+            <KeyboardArrowLeftRoundedIcon className="text-grey-c900" />
+          </IconButton>
+        ) : (
+          <div className="pl-2"></div>
+        )}
         <div className="font-semibold">Profile</div>
       </div>
       <Divider />
@@ -102,4 +114,4 @@ const UserInforModal = ({ onClose }: Props) => {
   );
 };
 
-export default UserInforModal;
+export default UserInforContent;
